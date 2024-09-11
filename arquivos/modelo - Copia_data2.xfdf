@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xfdf xmlns="http://ns.adobe.com/xfdf/" xml:space="preserve">
+<f href="./modelo - Copia.pdf"/>
+<fields><field name="tipoDaPeticao"><value>1</value></field>
+<field name="numeroDoProcesso1"><value>123456</value></field>
+<field name="numeroDoAtendimento1"><value></value></field>
+<field name="competenciaDoAtendimento1"><value></value></field>
+<field name="tipoDeAtendimento1"><value>apac</value></field>
+<field name="contratoFoiAdaptado"><value></value></field>
+<field name="extensaoAreaCoberturaUrgencia"><value></value></field>
+<field name="ReembolsoUrgenciaForaDaAreaCobertura"><value></value></field>
+<field name="LaudoAuditoriaAssistencialParaAreaDeAbrangenciaGeografica"><value></value></field>
+<field name="dataAssinaturaContrato"><value></value></field>
+<field name="dataDaAdaptacao"><value></value></field>
+<field name="NumeroClausulaAreaGeograficaAbrangencia"><value></value></field>
+<field name="NumeroClausulaRegulamentoUrgenciaEmergencia"><value></value></field>
+<field name="NumeroProntuarioAuditoriaAssistencial"><value></value></field>
+<field name="InformacoesAdicionaisAreaDeAbrangenciaGeografica"><value></value></field>
+<field name="Assinatura Digital"><value></value></field>
+</fields>
+<ids original="4d84f93aeed3314fb386ed631f88b84" modified="4d84f93aeed3314fb386ed631f88b84"/>
+</xfdf>
