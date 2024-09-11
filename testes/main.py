@@ -26,8 +26,9 @@ class PdfFormFiller:
         with open(nome_arquivo, "wb") as output_stream:
             self.writer.write(output_stream)
 
-    def verificar_campos(self):
-        return self.reader.get_fields()
+    def verificar_campos(self, nome_arquivo):
+        reader_check = PdfReader(nome_arquivo)
+        return reader_check.get_fields()
 
     def preencher_tipo_peticao(self, tipo):
         opcoes = {
@@ -93,8 +94,14 @@ class PdfFormFiller:
 
 # Exemplo de uso
 if __name__ == "__main__":
+    form_filler = PdfFormFiller(r"output\10-09-2024-17-43-17\12224.pdf")
+    
+    
+    # Preencher campos
+    
+    form_filler.preencher_tipo_atendimento("apac")
 
-    # Verifica os dados dos formulários do arquivo.
-    campos_verificados = PdfFormFiller(r"output\10-09-2024-19-26-38\12211.pdf").verificar_campos()
-    print(campos_verificados)
+    
+    # Salvar o PDF preenchido
+    form_filler.salvar_pdf(r"output\10-09-2024-17-43-17\12224.pdf")
     
