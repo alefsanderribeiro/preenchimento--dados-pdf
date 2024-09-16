@@ -94,14 +94,15 @@ class PdfFormFiller:
 
 # Exemplo de uso
 if __name__ == "__main__":
-    form_filler = PdfFormFiller(r"output\10-09-2024-17-43-17\12224.pdf")
+    form_filler = PdfFormFiller(r"arquivos/modelo_teste.pdf")
     
     
     # Preencher campos
     
     form_filler.preencher_tipo_atendimento("apac")
+    form_filler.preencher_tipo_peticao("impugnacao")
 
     
     # Salvar o PDF preenchido
-    form_filler.salvar_pdf(r"output\10-09-2024-17-43-17\12224.pdf")
+    form_filler.salvar_pdf(r"output\testes_preenc_adobe.pdf")
     

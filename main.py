@@ -397,7 +397,7 @@ class FormularioPDF:
             try:
                 # Salvar o arquivo PDF
                 self._salvar_pdf(caminho_arquivo, filled_pdf)
-                #self._fazer_ajuste(caminho_arquivo)
+                self._fazer_ajuste(caminho_arquivo)
                 print(f"PDF gerado: {nome_arquivo}")
             except PermissionError:
                 raise PermissionError(f"Sem permissão para salvar o arquivo PDF: {caminho_arquivo}")

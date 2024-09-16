@@ -6,7 +6,7 @@ from pathlib import Path
 
 class FormularioPDF:
     def __init__(self):
-        self.modelo_pdf = Path("arquivos\modelo_teste.pdf")
+        self.modelo_pdf = Path(r"arquivos\modelo_teste.pdf")
         self.pasta_saida = Path("output").absolute()
         self.FormWrapper = FormWrapper(str(self.modelo_pdf.absolute()))
         self.PdfWrapper = PdfWrapper(str(self.modelo_pdf.absolute()))
@@ -38,11 +38,15 @@ class FormularioPDF:
         preview_stream = self.PdfWrapper.preview
         with open("teste.pdf", "wb+") as output:
             output.write(preview_stream)
+            
+    def sample_data(self):
+        print(self.PdfWrapper.sample_data)
     
     def _preencher_formulario(self, dados):
         dados_ajustados = self._ajustar_dados(dados)
         print(dados_ajustados)
-        return self.FormWrapper.fill(dados_ajustados, flatten=False, adobe_mode=False)
+        return self.PdfWrapper.fill(dados_ajustados, flatten=False)
+        #return self.FormWrapper.fill(dados_ajustados, flatten=True, adobe_mode=True)
     
     def _salvar_pdf(self, caminho_arquivo, filled_pdf):
         
@@ -58,17 +62,16 @@ class FormularioPDF:
             dados_ajustados["tipoDaPeticao"] = 0
         elif "recurso" in tipo_peticao:
             dados_ajustados["tipoDaPeticao"] = 1
-        else:
-            dados_ajustados["tipoDaPeticao"] = None
+
 
         # Ajustar tipo de atendimento
         tipo_atendimento = str(dados.get("tipoDeAtendimento1", "")).upper()
         if "AIH" in tipo_atendimento:
-            dados_ajustados["tipoDeAtendimento1"] = 0
-        elif "APAC" in tipo_atendimento:
             dados_ajustados["tipoDeAtendimento1"] = 1
-        else:
-            dados_ajustados["tipoDeAtendimento1"] = None
+            
+        elif "APAC" in tipo_atendimento:
+            dados_ajustados["tipoDeAtendimento1"] = 2
+            
 
         # Ajustar campos booleanos
         campos_booleanos = [
@@ -196,7 +199,7 @@ if __name__ == "__main__":
     PDF = FormularioPDF()
     print(PDF.schema())
     #PDF.preview()
-    
+    #PDF.sample_data()
     
     # Fazer o processamento dos dados da planilha em PDF individual para cada processo
     PDF.processar_planilha_em_pdf(caminho_planilha)

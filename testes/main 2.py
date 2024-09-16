@@ -101,17 +101,13 @@ if __name__ == "__main__":
     print("Primeiro arquivo (Template)")
     form_filler = PdfFormFiller(r"arquivos/modelo_teste.pdf")
 
-    #form_filler.todos_campos()
-    
-    form_filler.pesquisar_campo("tipoDaPeticao")
-    
-    form_filler.preencher_tipo_peticao("tipoDeAtendimento1")
+    form_filler.preencher_tipo_peticao("impugnacao")
     
     form_filler.preencher_tipo_atendimento("AIH")
     
     form_filler.doc.save(r"output/modelo_teste_preenchido.pdf")  # Salva com um nome diferente
     
-    
+    """
     print( "------------------------------------------" )
     print("Segundo arquivo (Preenchido no Python)")
     form_filler = PdfFormFiller(r"output/modelo_teste_preenchido.pdf")
@@ -134,7 +130,7 @@ if __name__ == "__main__":
     # Preencher campos
     #form_filler.preencher_tipo_peticao("recurso")
     
-    """
+    
     form_filler.preencher_numero_processo("123456")
     form_filler.preencher_numero_atendimento("789012")
     form_filler.preencher_competencia_atendimento("01/2023")
