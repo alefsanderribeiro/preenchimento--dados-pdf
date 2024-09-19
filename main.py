@@ -3,6 +3,8 @@ from pathlib import Path
 import json
 import pandas as pd
 from datetime import datetime
+import unicodedata
+import re
 
 # TODO: Você pode usar o TK-Inter pra fazer uma GUI pra facilitar a utilização.
 # https://www.devmedia.com.br/tkinter-interfaces-graficas-em-python/33956
@@ -35,6 +37,8 @@ class FormularioPDF:
         with open("teste.pdf", "wb+") as output:
             output.write(preview_stream)  # Salva a visualização em um arquivo PDF
 
+    
+
     def _preencher_formulario(self, dados):
         """
         Preenche o formulário PDF com os dados fornecidos.
@@ -50,6 +54,13 @@ class FormularioPDF:
         """
         with open(caminho_arquivo, "wb") as output:
             output.write(filled_pdf.read())  # Salva o conteúdo do PDF preenchido no arquivo especificado
+            
+            
+    def _remover_acentos(self, texto):
+        nfkd = unicodedata.normalize('NFKD', texto)
+        texto_sem_acento = u"".join([c for c in nfkd if not unicodedata.combining(c)])
+        texto_sem_acento = re.sub(r'ç', 'c', texto_sem_acento)
+        return texto_sem_acento
 
     def _ajustar_dados(self, dados):
         """
@@ -69,10 +80,14 @@ class FormularioPDF:
         Ajusta o tipo de petição e preenche os campos específicos.
         """
         tipo_peticao = str(dados.get("tipoDaPeticao", "")).lower()
-        if "impugnação" in tipo_peticao:
+                
+        sanitize_peticao = self._remover_acentos(tipo_peticao)
+
+
+        if "impugnacao" in sanitize_peticao:
             dados_ajustados["tipoDaPeticaoImpug"] = "6"
             dados_ajustados["tipoDaPeticaoRecur"] = ""
-        elif "recurso" in tipo_peticao:
+        elif "recurso" in sanitize_peticao:
             dados_ajustados["tipoDaPeticaoImpug"] = ""
             dados_ajustados["tipoDaPeticaoRecur"] = "6"
         else:
