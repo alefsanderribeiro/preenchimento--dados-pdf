@@ -69,7 +69,7 @@ class FormularioPDF:
         Ajusta o tipo de petição e preenche os campos específicos.
         """
         tipo_peticao = str(dados.get("tipoDaPeticao", "")).lower()
-        if "impugnacao" in tipo_peticao:
+        if "impugnação" in tipo_peticao:
             dados_ajustados["tipoDaPeticaoImpug"] = "6"
             dados_ajustados["tipoDaPeticaoRecur"] = ""
         elif "recurso" in tipo_peticao:
